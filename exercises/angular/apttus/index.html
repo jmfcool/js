@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<title>Exercise</title>
+		<link data-require="bootstrap-css@3.1.1" data-semver="3.1.1" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+		<style type="text/css"> 
+		
+			@import 'style.css';
+
+		</style>
+	</head>
+	<body>
+		<div ng-controller="myCtrl"> 
+			<input ng-model="search" placeholder="Search:">
+			<table>
+				<thead>
+					<tr>
+						<td ng-click='sortColumn("id")' ng-class='sortClass("id")' class="text-center">id</td>
+						<td ng-click='sortColumn("name")' ng-class='sortClass("name")'>Repo</td>
+						<td ng-click='sortColumn("fork")' ng-class='sortClass("fork")' class="text-center">Fork</td>
+						<td ng-click='sortColumn("private")' ng-class='sortClass("private")' class="text-center">Private</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr dir-paginate="repo in repos | itemsPerPage: pageSize | orderBy:column:reverse | filter:search" current-page="currentPage">
+						<td>{{repo.id}}</td>
+						<td>{{repo.name}}</td>
+						<td>{{repo.fork}}</td>
+						<td>{{repo.private}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="./node_modules/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
+		</div>
+		<script data-require="jquery@*" data-semver="2.0.3" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+		<script data-require="bootstrap@3.1.1" data-semver="3.1.1" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+		<script src="./node_modules/angular-utils-pagination/dirPagination.js"></script>
+		<script src="controller.js"></script>
+	</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>Cookies</title>
+		<script type="text/javascript">
+
+			var Model = {
+				get: function (id)
+				{
+					return this.data[id];
+				},
+				del: function (id)
+				{
+					delete this.data[id];
+				},
+				data:
+				{
+					'all':
+					{
+						'text': 'Cookies',
+						'name': '',
+						'value': '',
+						'expire': ''
+					},
+					'1':
+					{
+						'text': 'Cookie 1',
+						'name': 'animal',
+						'value': 'kangaroo',
+						'expire': '30'
+					},
+					'2':
+					{
+						'text': 'Cookie 2',
+						'name': 'people',
+						'value': 'jack johnson',
+						'expire': '30'
+					},
+					'3':
+					{
+						'text': 'Cookie 3',
+						'name': 'geek',
+						'value': 'sheek',
+						'expire': '30'
+					}
+				}
+			}
+
+			var View = {
+				data: function(data)
+				{
+					var h = [];
+						for(var key in data)
+						{
+							h.push('<button id="' + key + '">' + data[key].text + '</button>');
+						}
+					return h;
+				},
+				port: function(item,id,port)
+				{
+					var el = document.createElement('div');
+						el.setAttribute('id',id);
+						el.innerHTML = item.join('\r');
+						document.getElementById(port).appendChild(el);
+				}
+			}
+
+			var Controller = {
+				init: function(id)
+				{
+					this.display(id);
+					this.listener('click',this.handler,id);
+				},
+				display: function(id)
+				{
+					new View.port(new View.data(Model.data),'data',id);
+				},
+				cookie: function(action)
+				{
+					var cookies, tmp, c, key;
+						cookies = [];
+						tmp = document.cookie.split(/\;/);
+						document.getElementById('msg').innerHTML = document.cookie;
+					var pointer = function()
+					{
+						for (key in tmp)
+						{
+							c = tmp[key].split(/\=/);
+							cookies[c[0]] = c[1];
+							if (cookies[c[0]] === action)
+								document.getElementById('msg').innerHTML = cookies[c[0]];
+						}
+					}
+					return pointer();
+				},
+				dispatcher: function()
+				{},
+				listener: function(type,func,id)
+				{
+					var el = document.getElementById(id);
+					if (el.addEventListener)
+					{
+						el.addEventListener(type,func,false);
+					}
+					else if (el.attachEvent)
+					{
+						el.attachEvent('on'+type,func);
+					}
+				},
+				handler: function(e)
+				{
+					(window.event) ? e.cancelBubble = true : e.stopPropagation();
+					var target = window.event ? e.srcElement : e.target;
+					var el = document.getElementById(target.id);
+					switch(e.type)
+					{
+						case 'click':
+							if (target.nodeName.toLowerCase() === 'button')
+							{
+								var m = Model.get(target.id);
+								if (target.id !== 'all')
+									new Controller.create(m.name,m.value,m.expire);
+								new Controller.cookie(m.value);
+								var d = document.getElementsByTagName('button');
+								for (var i = 0; i < d.length; i ++)
+								{
+									if (d[i].className === 'active')
+									{
+										d[i].className = '';
+									}
+								}
+								if (el.className !== 'active')
+									el.className = 'active';
+								else
+									el.className = '';
+							}
+						break;
+					}
+				},
+				create: function(name,value,days)
+				{
+					if (days)
+					{
+						var date = new Date();
+							date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+						var expires = '; expires=' + date.toGMTString();
+					}
+					else
+					{
+						var expires = '';
+					}
+					document.cookie = name + '=' + value + expires + '; path=/';
+				}
+			}
+
+			window.onload = function()
+			{
+				Controller.init('port');
+			}
+
+		</script>
+		<style type="text/css">
+
+			@import url('../../../css/sandbox/_sass/global.css');
+
+		</style>
+	</head>
+	<body>
+		<div id="msg">Msg</div>
+		<section>
+			<div id="port"></div>
+		</section>
+	</body>
+</html>

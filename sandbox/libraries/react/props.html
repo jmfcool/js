@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Props</title>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+        <script crossorigin src="https://unpkg.com/@babel/standalone@7.1.0/babel.min.js"></script>
+        <script type="text/babel">
+
+            import PropTypes from 'prop-types';
+
+            const Sum = (props) => {
+                return (<h1 style={{margin:'1em'}}>{props.a} + {props.b} = {props.a + props.b}</h1>);
+            }
+
+            Sum.PropTypes = {
+                a: PropTypes.number.isRequired,
+                b: PropTypes.number.isRequired,
+            };
+
+            ReactDOM.render(<Sum a={10} b={20} />, document.getElementById('root'));
+
+        </script>
+    </body>
+</html>

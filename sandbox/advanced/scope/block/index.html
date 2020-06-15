@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<title>Scope - Block</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<script type="text/ecmascript">
+
+			const example = {
+				scope: null
+			};
+
+			example.message = (args) => {
+				if(args.log) console.log(args.log);
+				if(args.msg) document.getElementById('viewport').innerHTML = args.msg;
+			};
+
+			let scope = 'window';
+
+			example.foo = () => {
+				let scope = 'Bypass block because of scope';
+				if(true) {
+					let scope = 'block';
+				}
+				return scope;
+			};
+
+			example.init = () => {
+				example.scope = example.foo();
+				example.message({ msg:example.scope, log:example.scope });
+			};
+
+			document.addEventListener('DOMContentLoaded',example.init,false);
+
+		</script>
+	</head>
+	<body>
+		<div id="viewport"></div>
+	</body>
+</html>

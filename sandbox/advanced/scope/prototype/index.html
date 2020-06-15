@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<title>Scope - Prototype</title>
+                <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<script type="text/javascript">
+
+			var example = {
+				scope: null
+			};
+
+			example.message = function(args)
+			{
+				if(args.log) console.log(args.log);
+				if(args.msg) document.getElementById('viewport').innerHTML = args.msg;
+			};
+
+			example.foo = function(args)
+			{
+				this.bar = args.bar;
+			};
+
+			var foo = new example.foo({ bar: 'public' });
+
+			example.foo.prototype.prototype = function(args) 
+			{ 
+				return args.bar;
+			};
+			
+			example.init = function()
+			{
+				example.scope = foo.prototype({ bar: 'prototype' });
+				example.message({ msg: [foo.bar,example.scope], log:[foo.bar,example.scope] });
+			};
+		
+			document.addEventListener('DOMContentLoaded',example.init,false);
+
+		</script>
+	</head>
+	<body>
+		<div id="viewport"></div>
+	</body>
+</html>

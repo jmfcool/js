@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<response status='error'>
+	<error type='validation'>                   
+		<fields>                        
+			<field>customer.cc.number</field>
+			<field>customer.state</field>
+			<field>customer.zip</field>
+			<field>customer.email</field>
+		</fields>
+	</error>
+</response>

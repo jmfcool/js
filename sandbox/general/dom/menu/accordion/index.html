@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Accordion Menu Using jQuery</title>
+        <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+        <script type="text/javascript">
+            
+			google.load("jquery","1.3.2"); 
+            google.load("jqueryui","1.7.2");
+			
+        </script>
+        <script type="text/javascript">
+        
+            $(document).ready(function()
+            {
+                // OnClick 
+                $("#firstpane p.menu_head").click(function()
+                {
+                    $(this).css({backgroundImage:"url(images/down.png)"}).next("div.menu_body").slideToggle(300).siblings("div.menu_body").slideUp("slow");
+                    $(this).siblings().css({backgroundImage:"url(images/left.png)"});
+                });
+                // MouseOver
+                $("#secondpane p.menu_head").mouseover(function()
+                {
+                    $(this).css({backgroundImage:"url(images/down.png)"}).next("div.menu_body").slideDown(500).siblings("div.menu_body").slideUp("slow");
+                    $(this).siblings().css({backgroundImage:"url(images/left.png)"});
+                });
+            });
+        
+        </script>
+        <style type="text/css">
+            
+            body { margin: 10px auto; font: 75%/120% Verdana,Arial, Helvetica, sans-serif; }
+			.menu { float:left; }
+            .menu-2 { margin-left:20px; }
+			.menu_list { width: 150px; }
+            .menu_head { padding: 5px 10px; cursor: pointer; position: relative; margin:1px; font-weight:bold; background: #eef4d3 url(images/left.png) center right no-repeat; }
+            .menu_body { display:none; }
+            .menu_body a{ display:block; color:#006699; background-color:#EFEFEF; padding-left:10px; font-weight:bold; text-decoration:none; }
+            .menu_body a:hover{ color: #000000; text-decoration:underline; }
+            
+        </style>
+    </head>
+    <body>
+    
+		<!-- Menu 1 -->
+    
+        <div class="menu menu-1"> <!--This is the first division of left-->
+            <p><strong>&nbsp; OnClick</strong></p>
+            <div id="firstpane" class="menu_list"> <!--Code for menu starts here-->
+                <p class="menu_head">Header-1</p>
+                <div class="menu_body">
+                    <a href="#">Link-1</a>
+                    <a href="#">Link-2</a>
+                    <a href="#">Link-3</a>	
+                </div>
+                <p class="menu_head">Header-2</p>
+                <div class="menu_body">
+                    <a href="#">Link-1</a>
+                    <a href="#">Link-2</a>
+                    <a href="#">Link-3</a>	
+                </div>
+                <p class="menu_head">Header-3</p>
+                <div class="menu_body">
+                    <a href="#">Link-1</a>
+                    <a href="#">Link-2</a>
+                    <a href="#">Link-3</a>			
+                </div>
+            </div>  <!--Code for menu ends here-->
+        </div>
+        
+        <!-- End of Menu 1 -->
+        <!-- Menu 2 -->
+        
+        <div class="menu menu-2"> <!--This is the second division of right-->
+            <p><strong>&nbsp; MouseOver</strong></p>
+            <div class="menu_list" id="secondpane"> <!--Code for menu starts here-->
+                <p class="menu_head">Header-1</p>
+                <div class="menu_body">
+                    <a href="#">Link-1</a>
+                    <a href="#">Link-2</a>
+                    <a href="#">Link-3</a>	
+                </div>
+                <p class="menu_head">Header-2</p>
+                <div class="menu_body">
+                    <a href="#">Link-1</a>
+                    <a href="#">Link-2</a>
+                    <a href="#">Link-3</a>	
+                </div>
+                <p class="menu_head">Header-3</p>
+                <div class="menu_body">
+                    <a href="#">Link-1</a>
+                    <a href="#">Link-2</a>
+                    <a href="#">Link-3</a>			
+                </div>
+            </div>      <!--Code for menu ends here-->
+        </div>
+        
+        <!-- End of Menu 2 -->
+        
+    </body>
+</html>

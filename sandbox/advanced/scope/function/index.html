@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>Scope - Function</title>
+                <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<script type="text/javascript">
+
+			var example = {
+				scope: null
+			};
+
+			example.message = function(args)
+			{
+				if(args.log) console.log(args.log);
+				if(args.msg) document.getElementById('viewport').innerHTML = args.msg;
+			};
+
+			example.foo = function()
+			{
+				var scope;
+				if(true)
+				{
+					scope = 'function';
+				}
+				return scope;
+			};
+
+			example.init = function()
+			{
+				example.scope = example.foo();
+				example.message({ msg:example.scope, log:example.scope });
+			};
+		
+			document.addEventListener('DOMContentLoaded',example.init,false);
+
+		</script>
+	</head>
+	<body>
+		<div id="viewport"></div>
+	</body>
+</html>

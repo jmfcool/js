@@ -1,0 +1,102 @@
+<html>
+	<head>
+		<script>
+			/* this is standard ajax request */
+			self.request = null
+			self.createRequest = function () {
+				var request = null
+				try { 
+					request = new XMLHttpRequest();
+				} catch (trymicrosoft) {
+					try {
+						request = new ActiveXObject("Msxml2.XMLHTTP");
+					} catch (othermicrosoft) {
+						try {
+							request = new ActiveObject("Microsoft.XMLHTTP");
+						} catch (failed) {
+							request = null;
+							alert ("Ajax request failed")
+						}
+					}
+				}
+				return request;
+			}
+			self.sendRequest = function (url) {
+				request = createRequest();
+				request.onreadystatechange = updatepage
+				request.open("GET",url,true);
+				request.send(null);
+			}
+			/* End of standard ajax request */
+			self.updatepage = function () {
+				if (request.readyState == 4) {
+					var response = request.responseXML.getElementsByTagName('response')[0];
+					if (response.getAttribute('status') == 'error') {
+						doOnError(response);
+					} else if (response.getAttribute('status') == 'success') {
+						doOnSuccess(response);
+					} else {
+						alert('can not recognize response status');
+					}
+				}
+				return false;
+			}
+
+			self.doOnError = function (a) {
+				var string = ''; /* this will be our error message */
+				var errors = a.getElementsByTagName('error');
+				var form = document.forms[0]; /* this is the form which we get the response for. */
+				for (var i=0;i<errors.length;i++) {
+					string += 'Error-type:'+errors[i].getAttribute('type')+'<br />';
+					if (errors[i].getElementsByTagName('message').length) {
+						string += (errors[i].getElementsByTagName('message')[0].text)? errors[i].getElementsByTagName('message')[0].text+'<br /><br />' : errors[i].getElementsByTagName('message')[0].textContent+'<br /><br />'
+					} else if (errors[i].getElementsByTagName('field').length) {
+						var fields = errors[i].getElementsByTagName('field')
+						for (var t=0;t<fields.length;t++) {
+							var fieldName = (fields[t].text) ? fields[t].text : fields[t].textContent;
+							string += '&nbsp;&nbsp;&nbsp; Error validating '+fieldName+'<br />';
+							/* This is where it gets difficult because I am not sure how you are storing the error messages, so I will just insert a div with error message under the field that caused validation error. Note, for this to work, every field needs to be in a separate TD or DIV container (I think thats how it is anyways.) */
+							if (form[fieldName]) {
+								var parent = form[fieldName].parentNode; /* This will most likely be a TD in which input field is. */
+								if (!document.getElementById('error_'+fieldName)) {
+									var errorDiv = document.createElement('DIV');
+									errorDiv.setAttribute('id','error_'+fieldName);
+									errorDiv.className = 'errorMsg'
+									errorDiv.innerHTML = 'Error validating this field.';
+									parent.appendChild(errorDiv)
+									/* Now we need to set up an onfocus event for form field so error msg disappears as soon as user clicks on the input field. */
+									form[fieldName].onfocus = resetErrorMessage;
+								}
+							}
+						}
+					}
+				}
+				if (!document.getElementById('errormessage')) {
+					var errordiv = document.createElement('div')
+					errordiv.setAttribute('id','errormessage')
+					document.body.appendChild(errordiv)
+				}
+				document.getElementById('errormessage').innerHTML = string
+			}
+			self.doOnSuccess = function (a) {
+				/* this is where you send them to page 2 (as shown), or make another ajax request. */
+				document.location.href = 'page2.html';
+			}
+			self.resetErrorMessage = function () {
+				var errorId = 'error_'+this.id;
+				if (document.getElementById(errorId)) {
+					document.getElementById(errorId).parentNode.removeChild(document.getElementById(errorId));
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<form>
+			<div><input type="text" id="customer.cc.number" name="customer.cc.number" /></div>
+			<div><input type="text" id="customer.state" name="customer.state" /></div>
+			<div><input type="text" id="customer.zip" name="customer.zip" /></div>
+			<div><input type="text" id="customer.email" name="customer.email" /></div>
+		</form>
+		<button onclick="sendRequest('success.xml');">Emulate success request</button><button onclick="sendRequest('error.xml');">Emulate Validation error</button><button onclick="sendRequest('error2.xml');">Emulate General error</button>
+	</body>
+</html>

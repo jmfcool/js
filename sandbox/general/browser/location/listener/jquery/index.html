@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<title>Hyjack Links</title>
+		<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+		<script type="text/javascript">
+
+			google.load("jquery","1.3.2"); 
+			google.load("jqueryui","1.7.2");
+			
+		</script>
+		<script type="text/javascript">
+		
+			$(document).ready(function()
+			{
+				$('#class a.class').click(function() { window.open(this.href); return false; }); 
+				$('#http a[href^=http]').click(function() { window.open(this.href); return false; });
+				$('#external a[rel*=external]').click(function() { window.open(this.href); return false; });
+			});
+		
+		</script>
+	</head>
+	<body>
+		<h1>Checks for (a.class)</h1>
+		<ul id="class">
+			<li><a href="http://www.jmfcool.com?type=class" class="class">class(w)</a></li>
+			<li><a href="local.html?type=no">class(w/o)</a></li>
+		</ul>
+		<h1>Checks for (a[href^=http])</h1>
+		<ul id="http">
+			<li><a href="http://www.jmfcool.com?type=http">http(w)</a></li>
+			<li><a href="local.html?type=no">http(w/o)</a></li>
+		</ul>
+		<h1>Checks for (a[rel*=external])</h1>
+		<ul id="external">
+			<li><a href="http://www.jmfcool.com?type=rel" rel="external">rel(w)</a></li>
+			<li><a href="local.html?type=no">rel(w/o)</a></li>
+		</ul>
+	</body>
+</html>

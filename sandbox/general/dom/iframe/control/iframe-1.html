@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<title>This is the Child Frame...</title>
+		<style type="text/css">
+			
+			* { margin: 0 auto; padding: 0; border: 0; outline: 0; font: normal 100% "Arial", Helvetica, sans-serif; }
+			body { background-color: #a1a1a1; }
+			h2 { font-size: 20px; text-align: center; }
+			h3 { position: absolute; top: 10; right: 10;}
+			h4 { font-size: 15px; padding: 15px; }
+			a { margin: 10px; }
+			#content-wrapper { display: inline-block; width: 100%; margin-top: 10px; }
+			.selected { font-weight: bold; }
+			
+		</style>
+	</head>
+	<body>
+		<div id="content-wrapper">
+			<a href="iframe-1.html" onclick="top.toggleContent('2008')" class="selected">2008</a>
+			<a href="iframe-2.html" onclick="top.toggleContent('2007')">2007</a>
+			<a href="iframe-3.html" onclick="top.toggleContent('2006')">2006</a>
+			<h3>This is the Child Frame...</h3>
+			<h2>2008 Content</h2>
+		</div>
+	</body>
+</html>

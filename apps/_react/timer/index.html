@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Model View Intent (MVI) Architecture</title>
+		<style type="text/css">
+
+			@import url('../../../../css/_sandbox/_less/global.css');
+
+			#port
+			{
+				left: -15%;
+			}
+			#msg
+			{
+			    top: -82%;
+			    padding-right: 30px;
+			}
+
+		</style>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+        <script crossorigin src="https://unpkg.com/@babel/standalone@7.1.0/babel.min.js"></script>
+        <script type="text/babel">
+
+            let model = {
+                running: false,
+                time: 0
+            };
+
+            let view = (m) => {
+                let minutes = Math.floor(m.time / 60);
+                let seconds = m.time - (minutes * 60);
+                let secondsFormatted = `${seconds < 10 ? '0' : ''}${seconds}`
+                let handler = (event) => {
+                    model = update(model, m.running ? 'STOP' : 'START');
+                };
+                return  <div id="port">
+                            <div id='msg'>{minutes}:{secondsFormatted}</div>
+                            <button onClick={handler}>{m.running ? 'Stop' : 'Start'}</button>
+                            <button>Reset</button>
+                        </div>
+            };
+
+            let intents = {
+                TICK: 'TICK',
+                START: 'START',
+                STOP: 'STOP',
+                RESET: 'RESET'
+            };
+
+            const update = (model, intent) => {
+                const updates = {
+                    'START': (model) => Object.assign(model, {running: true}),
+                    'STOP': (model) => Object.assign(model, {running: false}),
+                    'TICK': (model) => Object.assign(model, {time: model.time + (model.running ? 1 : 0)})
+                };
+                return updates[intent](model);
+            };
+
+            const render = () => {
+                ReactDOM.render(view(model), document.getElementById('root'));
+            };
+            render();
+
+            setInterval(() => {
+                model = update(model, 'TICK');
+                render();
+            }, 1000);
+
+        </script>
+    </body>
+</html>

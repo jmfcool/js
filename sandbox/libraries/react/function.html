@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Function Component</title>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+        <script crossorigin src="https://unpkg.com/@babel/standalone@7.1.0/babel.min.js"></script>
+        <script type="text/babel">
+
+            const Button = (props) => {
+                return (
+                    <button>
+                        {props.label}
+                    </button>
+                );
+            }
+
+            ReactDOM.render(<Button label="alpha" />, document.getElementById('root'));
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,41 @@
+<html>
+	<head>
+		<title>XMLHttpRequest()</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<script type="text/ecmascript">
+
+			const example = {
+				scope: null
+			};
+
+			example.message = (args) => {
+				if(args.log) console.log(args.log);
+				if(args.msg) document.getElementById('viewport').innerHTML = `<h1>${args.msg}</h1>`;
+			};
+
+			example.process = () => {
+				let http = new XMLHttpRequest();
+					http.onreadystatechange = function() {
+						if (this.readyState == 4 && http.statusText == 'OK') {
+							example.message({ msg:this.responseText, log:this.responseText });
+						}
+						else {
+							example.message({ msg:`File ${this.statusText}`, log:this.statusText });
+						}
+					};
+					http.open("GET", "example.txt", true);
+					http.send();
+			};
+
+			example.init = () => {
+				example.process();
+			};
+
+			document.addEventListener('DOMContentLoaded',example.init,false);
+
+		</script>
+	</head>
+	<body>
+		<div id="viewport"></div>
+	</body>
+</html>

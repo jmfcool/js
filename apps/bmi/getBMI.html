@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>Get BMI</title>
+        <script type="text/javascript">
+
+            self.initParam = function()
+            {
+                var pairs, setFeet, setInches, setWeight, setHeight, setBMI;
+                    pairs = (document.location.href.match(/\?/)) ? document.location.href.split(/\?/)[1].split(/\;|\&/) : '';
+                    setFeet = pairs[0].split(/\=/);
+                    setInches = pairs[1].split(/\=/);
+                    setWeight = pairs[2].split(/\=/);
+                    setHeight = Math.floor(setFeet[1] * 12) + Math.floor(setInches[1]);
+                    setBMI = Math.floor(setWeight[1] / (setHeight * setHeight) * 703);
+                document.getElementById('bmi').innerHTML = setBMI;
+            }
+
+            window.onload = initParam;
+
+        </script>
+        <style type="text/css">
+
+            * { margin: 0 auto; padding: 0; text-align: center; font: normal 100% "Arial", Helvetica, sans-serif; }
+            h1 { font-size: 30px; font-style: italic; color: #ce0000; }
+            #body-wrapper { width: 100%; position: absolute; top: 30%; left: 0px; }
+            #bmi { font-size: 60px; }
+
+        </style>
+    </head>
+    <body>
+        <div id="body-wrapper">
+            <h1>Your BMI is...</h1>
+            <div id="bmi"></div>
+        </div>
+    </body>
+</html>

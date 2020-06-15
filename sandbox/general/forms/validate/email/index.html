@@ -1,0 +1,54 @@
+<html>
+	<head>
+		<style type="text/css">
+
+			* { margin: 0 auto; padding: 0; text-align: center; }
+			form { padding: 30px 0px; }
+			label { display: block; padding-right: 170px; }
+			input { margin-bottom: 10px; }
+			.error { font: italic 12px "Arial", Helvetica, sans-serif; color: #ce0000; display: none; }
+
+		</style>            
+		<script type="text/javascript">
+
+			function checkform(a)
+            {
+				var flag = 0;
+				for (var i=0;i<a.elements.length;i++)
+                {
+					if (!a.elements[i].value)
+                    {
+						var b = a.elements[i].nextSibling;
+						while (!b.tagName)
+                        {
+                            b = b.nextSibling;
+                        }
+						if (b.className == 'error')
+                        {
+							b.style.display = "block";
+							flag++;
+						}
+					}
+				}
+				if (flag)
+                {
+                    return false;
+                }
+				return true;
+			}
+
+		</script>
+	</head>
+	<body>
+		<form name="formValidate" onSubmit="return checkform(this)" method="post">
+			<label>Email:</label> 
+			<input type="text" name="email" value="" size="30" />
+			<div class="error">This field is Blank</div>
+			<label>Email2:</label> 
+			<input type="text" name="email2" value="" size="30" />
+			<div class="error">This field is Blank</div>
+			<br />
+			<input type="submit" value="Submit"> 
+		</form>
+	</body>
+</html>

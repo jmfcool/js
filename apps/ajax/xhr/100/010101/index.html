@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>XHR</title>
+		<script type="text/javascript">
+
+			function loadXMLDoc(req)
+			{		
+				if(window.XMLHttpRequest)
+				{// IE7+, Firefox, Chrome, Opera, Safari
+					xhr = new XMLHttpRequest();
+				}
+				else
+				{// IE5, IE6
+					xhr = new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				xhr.onreadystatechange = function()
+				{
+					/*switch(xhr.readyState)
+					{
+						case 0: alert("request not initialized"); break;
+						case 1: alert("server connection established"); break;
+						case 2: alert("request received"); break;
+						case 3: alert("processing request"); break;
+						case 4: alert("request finished and response is ready"); break;
+					}*/
+					if(xhr.readyState == 4 && xhr.status == 200)
+					{
+						document.getElementById("xhr").innerHTML = xhr.responseText;
+					}
+					else
+					{
+						document.getElementById("xhr").innerHTML = xhr.status;
+					}
+				}
+				xhr.open("GET",req,true);
+				xhr.send();
+			}
+		
+		</script>
+		<style type="text/css">
+		
+			* { margin: 0 auto; padding: 0; }
+			body { text-align: center; }
+			button { padding: 5px 10px; margin: 0 10px; }
+			em { color: #e1e1e1; }
+			h1, h2, h3 { margin-top: 15px; }
+			h2 { margin-top: 10%; }
+		
+		</style>
+	</head>
+	<body>
+		<h1>XHR</h1>
+		<h3>Status Test</h3>
+		<button type="button" onclick="loadXMLDoc('xhr.txt')">Status 200</button>
+		<button type="button" onclick="loadXMLDoc('xhr.txt-bad')">Status 400</button>
+		<h3>Params Test</h3>
+		<button type="button" onclick="loadXMLDoc('xhr.php?arg=1')">Arg 1</button>
+		<button type="button" onclick="loadXMLDoc('xhr.php?arg=2')">Arg 2</button>
+		<button type="button" onclick="loadXMLDoc('xhr.php?arg=3')">Arg 3</button>
+		<button type="button" onclick="loadXMLDoc('xhr.php?arg=4')">Arg 4</button>
+		<h2><div id="xhr"><strong>XHR</strong> <em>Here</em></div></h2>
+	</body>
+</html>

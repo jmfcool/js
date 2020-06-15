@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Todo List</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+		<script type="text/javascript">
+			
+			var app = angular.module('app', []); 
+			
+			app.controller('ctrl', function($scope) 
+			{
+			    $scope.list = [{ id: 1, text: 'Example', complete: false }];
+			
+				// Adds a task to the list object
+			    $scope.add = function() 
+			    {
+		        	$scope.list.push({ id: ($scope.list[$scope.list.length-1].id+1), text: $scope.task, complete: false });
+		        	$scope.task = ''; // Reset input for new task entry.
+					console.log('$scope.list',$scope.list); // Display object in console for debugging.
+			    };
+			
+				// Updates object so that selected object is marked as completed
+			    $scope.remove = function(args) 
+			    {
+					$scope.list[args.id-1].complete = args.completed;
+					console.log('$scope.list',$scope.list); // Display object in console for debugging.
+			    };
+			    
+			    // This is where functionality to switch a task to active would go.
+			    $scope.active = function(args) {};
+			    
+			    // This is where functionality to update a task would go.
+			    $scope.update = function(args) {};
+			});
+		
+		</script>
+		<style>
+			
+			* { margin: 0 auto; padding: 0; font: normal 100% "Arial", Helvetica, sans-serif; }
+			header { padding: 20px 10px; }
+			header input[type="text"] { padding: 5px; margin-right: 5px; }
+			header input[type="submit"] { border-radius: 5px; border: none; background-color: #00008B; color: #fff; padding: 5px 10px; box-shadow: 0px 0px 5px 0px #333; }
+			section { padding: 10px 20px; }
+			section ul { list-style: none; }
+			section li { font-size: 14px; margin-bottom: 5px; }
+			section button { border-radius: 5px; border: none; background-color: #ce0000; color: #fff; padding: 5px; margin-right: 5px; box-shadow: 0px 0px 2px 0px #333; }
+			footer { padding: 20px 0 20px 10px }
+			
+		</style>
+	</head>
+	<body ng-app="app" ng-controller="ctrl as list">	
+		<header>
+			<form ng-submit="add()">
+			    <input type="text" ng-model="task" placeholder="Add Task">
+			    <input type="submit" value="Add Task">
+			</form>
+		</header>
+		<section>
+			<ul ng-repeat="item in list | filter: false">
+			    <li><button ng-click="remove({ id: item.id, completed: true })">Remove</button> {{$index+1}}. {{item.text}}</li>
+			</ul>	
+		</section>
+		<footer>
+			Completed: <span ng-repeat="completed in list | filter: true as results"></span>{{results.length}}
+		</footer>
+	</body>
+</html>

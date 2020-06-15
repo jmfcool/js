@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular.min.js"></script>
+    <style type="text/css">
+
+      * { margin: 0 auto; padding: 0; }
+      h1 {}
+      h2 { font-size: 16px; font-style: italic; }
+      h4 { position: fixed; bottom: 5px; left: 5px; }
+      img { position: fixed; bottom: 5px; right: 5px; width: 150px; height: 150px; border-radius: 50%; }
+
+      .column-1 { position: fixed; top: 5px; left: 5px; width: 250px; }
+      .column-2 { position: fixed; top: 5px; right: 5px; }
+
+    </style>
+  </head>
+  <body>
+  	<div ng-controller="MyCtrl">
+      <div class="column-1">
+        <h1>{{user.name}}</h1>
+        <p>{{user.bio}}</p>
+      </div>
+      <h4>Hireable: {{user.hireable}} <br /> Location: {{user.location}} <br /> Company: {{user.company}}</h4>
+      <div class="column-2">
+
+        <!-- Github -->
+
+        <h2>Github Followers: {{user.followers}}</h2>
+
+        <!-- End of Github -->        
+        <!-- Twitter -->
+
+        <a href="https://twitter.com/RunThroughMedia?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @RunThroughMedia</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script><br />
+
+        <!-- End of Twitter -->
+        <!-- Facebook -->
+
+        <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FRunThroughMedia%2F&width=163&layout=button_count&action=recommend&size=small&show_faces=true&share=true&height=46&appId=2208400136108506" width="163" height="46" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+
+        <!-- End of Facebook -->
+
+      </div>
+      <img ng-src="{{user.avatar_url}}" title="{{user.name}}" />
+    </div>
+  </body>
+  <script type="text/javascript">
+
+    const app = angular.module('MyApp', []);
+
+    app.controller('MyCtrl', ($scope, $http) => {
+
+      const github = $http.get('https://api.github.com/users/RunThroughMedia');
+
+      github.then(response => {
+        $scope.user = response.data;
+        console.log($scope);
+      });
+
+    });
+
+  </script>
+</html>

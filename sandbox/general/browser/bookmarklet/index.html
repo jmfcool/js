@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<title>Script Include</title>
+		<script type="text/javascript">
+		
+			document.onclick = function() 
+			{
+				alert("No Bookmarklet");
+				javascript:(function()
+				{
+					var s = document.createElement("script");
+						s.charset="UTF-8";
+						//s.src="alert.js";
+						s.src="http://jmfcool.com/js/alert.js";
+						//s.src="http://api.conduit.com/browsercompapi.js";
+						document.body.appendChild(s)
+						//OpenGadget(url, width, height, features) {}
+				})();
+			}
+			//javascript:(function(){var s=document.createElement("script");s.charset="UTF-8";s.src="http://jmfcool.com/js/alert.js";document.body.appendChild(s)})();
+		
+		</script>
+	</head>
+	<body>
+		<h1>Click window to trigger event</h1>
+	</body>
+</html>
+
+

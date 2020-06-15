@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+  </head>
+  <body>
+		<div ng-controller="MyCtrl">
+      <div class="float-left">
+        <h1>{{user.github.name}}</h1>
+        <img ng-src="{{user.github.photo}}" title="{{user.github.name}}" />
+      </div>
+      <div class="float-left">
+        <h3>{{person.firstName}} {{person.lastName}}</h3>
+        <img ng-src="{{person.image}}" title="{{person.firstName}} {{person.lastName}}" />
+      </div>
+      <div class="float-left">
+        <h5>{{user.gravatar.name}}</h5>
+        <img ng-src="{{user.gravatar.photo}}" title="{{user.gravatar.name}}" />
+      </div>
+    </div>
+  </body>
+</html>

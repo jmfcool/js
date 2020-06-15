@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <title>Fun</title>
+		<style type="text/css">
+			
+			* { margin: 0 auto; padding: 0; border: 0; outline: 0; font: normal 100% "Arial", Helvetica, sans-serif; }
+			body { text-align: center; }
+			h1 { font-size: 30px; margin: 10px auto; }
+			iframe { width: 90%; text-align: center; margin-bottom: 20px; }
+			/*li { display: none;}
+			.active { display: block; }*/
+			
+		</style>
+		<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+		<script type="text/javascript">
+			
+			google.load("jquery","1.3.2"); 
+			google.load("jqueryui","1.7.2");
+			
+		</script>
+		<script type="text/javascript">
+		
+			function toggleContent(id) 
+			{ 
+				var obj = document.getElementById(id);
+				(obj.style.display == 'none') ? obj.style.display = "block" : obj.style.display = "none";
+				/*if($("#Winner-Block li#" + id).hasClass("active") != true)
+				{
+					$("#Winner-Block li").click(function() 
+					{
+						$("li").removeClass("active");
+						$(this).addClass("active");
+					});
+				}
+				else
+				{
+					return false;
+				}*/
+			}
+			
+		</script>
+	</head>
+	<body>
+		<h1>This is the Parent Frame...</h1>
+		<div style="display: block; margin-bottom: 15px;">
+			<a href="javascript://" onclick="top.toggleContent('2008')">2008</a>
+			<a href="javascript://" onclick="top.toggleContent('2007')">2007</a>
+			<a href="javascript://" onclick="top.toggleContent('2006')">2006</a>
+		</div>
+		<iframe src="iframe-1.html" id="iframe" frameborder="0""></iframe>
+		<ul id="Winner-Block">
+			<li id="2008">2008 Selections</li>
+			<li id="2007">2007 Selections</li>
+			<li id="2006">2006 Selections</li>
+		</ul>
+	</body>
+</html>

@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <script type="text/javascript" src="Pager.class.js"></script>
+        <style type="text/css">    
+            
+			* { margin: 0 auto; padding: 0; text-align: center; font: normal 100% "Arial", Helvetica, sans-serif; }
+			.pg-normal { color: black; font-weight: normal; text-decoration: none; cursor: pointer; }
+			.pg-selected { color: black; font-weight: bold; text-decoration: underline; cursor: pointer; }
+			
+        </style>
+    </head>
+    <body>
+        <form action="" method="get" enctype="application/x-www-form-urlencoded">
+            <table id="results">
+                <tr>
+                    <th>#</th>
+                    <th>field</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><input type="text" name="field-name" value="rec1"></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><input type="text" name="field-name" value="rec2"></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><input type="text" name="field-name" value="rec3"></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><input type="text" name="field-name" value="rec4"></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><input type="text" name="field-name" value="rec5"></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td><input type="text" name="field-name" value="rec6"></td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td><input type="text" name="field-name" value="rec7"></td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td><input type="text" name="field-name" value="rec8"></td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td><input type="text" name="field-name" value="rec9"></td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td><input type="text" name="field-name" value="rec10"></td>
+                </tr>
+            </table>
+            <div id="pageNavPosition"></div>
+            <div><input type="submit" onClick="alert('No soup for you!'); return false;" />&nbsp;<input type="reset" /></div>
+        </form>
+        <script type="text/javascript">
+        
+            var pager = new Pager('results',4); 
+                pager.init(); 
+                pager.showPageNav('pager','pageNavPosition'); 
+                pager.showPage(1);
+                
+        </script>
+    </body>
+</html>

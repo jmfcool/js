@@ -1,0 +1,33 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+    <head>
+    <title>Switch Example</title>
+    <script type="text/javascript">
+
+        function example (a)
+        {
+            switch (a)
+            {
+                case "Jack":
+                    console.log("Singer")
+                break;
+                case "Jeremiah":
+                    console.log("Developer")
+                break;
+                case "Ben":
+                    console.log("Skater")
+                break;
+                default : alert("Have no idea who that is..");
+            }
+        }
+
+    </script>
+    </head>
+    <body>
+        Press button to alert person's position..
+        <button onclick="example(this.innerHTML)">Scott</button>
+        <button onclick="example(this.innerHTML)">Jeremiah</button>
+        <button onclick="example(this.innerHTML)">Ben</button>
+        <button onclick="example(this.innerHTML)">David</button>
+    </body>
+</html>

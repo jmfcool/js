@@ -1,0 +1,32 @@
+.turn > div {
+    height: 400px;
+}
+
+.turn {
+    padding: 20px 0;
+}
+
+.author-image {
+    max-height: 100%;
+}
+
+.answer {
+    background-color: #F0F7FD;
+    border-color: #D0E3F0;
+    margin-bottom: 20px;
+    padding: 13px 30px 13px 15px;
+    border-left: 5px solid #D0E3F0;
+    cursor: pointer;
+}
+
+.answer:hover {
+    background-color: #D0E3F0;
+}
+
+.continue {
+    padding: 20px 0;
+}
+
+.add-author {
+    float: right;
+}

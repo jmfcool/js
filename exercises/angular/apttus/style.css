@@ -1,0 +1,10 @@
+* { margin: 0; padding: 0; } 
+
+body, table { text-align: center; margin: 0 auto; }
+tbody td { border: solid #e1e1e1 1px; padding: 15px; }
+input { margin: 20px; padding: 5px; width: 300px;}
+
+.arrow-down:after, .arrow-up:after { content: ' '; position: relative; left: 2px; border: 8px solid transparent; }
+.arrow-down:after { top: 10px; border-top-color: black; }
+.arrow-up:after { bottom: 15px; border-bottom-color: black; }
+.arrow-down, .arrow-up { padding-right: 10px; }

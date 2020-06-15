@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>MVC</title>
+		<script type="text/javascript">
+
+			var Model = {
+				get: function (id)
+				{
+					return this.data[id];
+				},
+				del: function (id)
+				{
+					delete this.data[id];
+				},
+				data:
+				{
+					'215':
+					{
+						'name': 'Lookout for it!',
+						'date': '12-21-2012'
+					},
+					'216':
+					{
+						'name': 'Merry X-Mas',
+						'date': '12-25-2011'
+					},
+					'325':
+					{
+						'name': 'Happy Halloween',
+						'date': '10-31-2011'
+					},
+					'403':
+					{
+						'name': 'Happy New Year',
+						'date': '01-01-2012'
+					},
+					'455':
+					{
+						'name': 'Tax Day Again',
+						'date': '04-15-2012'
+					},
+					'620':
+					{
+						'name': 'Whoo 4th of July!',
+						'date': '07-04-2012'
+					}
+				},
+				meta:
+				{
+					'name':
+					{
+						'type': 'text',
+						'maxlength': 40,
+						'required': true
+					},
+					'date':
+					{
+						'type': 'date',
+						'between': ['01-01-2010','01-01-2013']
+					}
+				},
+				button:
+				{
+					'1':
+					{
+						'text': 'Refresh',
+						'required': false
+					}
+				}
+			}
+
+			var View = {
+				data: function(data)
+				{
+					var h = [];
+						h.push('<ul>');
+						for(var key in data)
+						{
+							h.push('<li id="' + key + '" class="test">' + data[key].name + ' <span>(' + data[key].date + ')</span></li>');
+						}
+						h.push('</ul>');
+					return h;
+				},
+				meta: function(data)
+				{
+					var h = [];
+						h.push('<ul>');
+						for(var key in data)
+						{
+							h.push('<li id="' + key + '">' + data[key].type + ' <span>(' + data[key].between + ')</span></li>');
+						}
+						h.push('</ul>');
+					return h;
+				},
+				button: function(data)
+				{
+					var h = [];
+						for(var key in data)
+						{
+							h.push('<button id="' + key + '">' + data[key].text + '</button>');
+						}
+					return h;
+				},
+				port: function(item,id,port)
+				{
+					var el = document.createElement('div');
+						el.setAttribute('id',id);
+						el.innerHTML = item.join('\r');
+						document.getElementById(port).appendChild(el);
+				}
+			}
+
+			var Controller = {
+				init: function(id)
+				{
+					this.display(id);
+					this.listener('mouseout',this.handler,id);
+					this.listener('mouseover',this.handler,id);
+					this.listener('click',this.handler,id);
+				},
+				display: function(id)
+				{
+					new View.port(new View.data(Model.data),'data',id);
+					new View.port(new View.button(Model.button),'button',id);
+					new View.port(new View.meta(Model.meta),'meta',id);
+				},
+				dispatcher: function()
+				{},
+				listener: function(type,func,id)
+				{
+					var el = document.getElementById(id);
+					if (el.addEventListener)
+					{
+						el.addEventListener(type,func,false);
+					}
+					else if (el.attachEvent)
+					{
+						el.attachEvent('on'+type,func);
+					}
+				},
+				handler: function(e)
+				{
+					(window.event) ? e.cancelBubble = true : e.stopPropagation();
+					var target = window.event ? e.srcElement : e.target;
+					var el = document.getElementById(target.id);
+					switch(e.type)
+					{
+						case 'mouseover':
+							if (target.nodeName.toLowerCase() === 'li')
+							{
+								el.className = 'active';
+							}
+						break;
+						case 'mouseout':
+							if (target.nodeName.toLowerCase() === 'li')
+							{
+								el.className = '';
+							}
+						break;
+						case 'click':
+							if (target.nodeName.toLowerCase() === 'li')
+							{
+								el.style.display = 'none';
+								Model.del(target.id);
+								document.getElementById('msg').innerHTML = 'Del - ' + target.id;
+							}
+							else if (target.nodeName.toLowerCase() === 'span')
+							{
+								alert("This is an event date");
+							}
+							else if (target.nodeName.toLowerCase() === 'button')
+							{
+								window.location.href = window.location.href;
+							}
+						break;
+					}
+				}
+			}
+
+			window.onload = function()
+			{
+				Controller.init('port');
+			}
+
+		</script>
+		<style type="text/css">
+
+			* { margin: 0 auto; padding: 0; border: 0; font: normal 100% "Arial", Helvetica, sans-serif; }
+			body { background-color: #e1e1e1; text-align: center; }
+			ul { width: 500px; margin: 40px auto; list-style: none; background-color: #fff; box-shadow: 0 0 15px #757575; }
+			li { font-size: 15px; font-weight: bold; text-align: left; padding: 10px; cursor: pointer; }
+			span { font-size: 12px; font-style: italic; letter-spacing: 1px; }
+			button { text-align: center; margin: 0 auto; padding: 5px 8px; cursor: pointer; font-weight: bold; color: #fff; background-color: #ce0000; box-shadow: 0 0 7px #757575; border-radius: 9px; }
+			.active { background-color: #e1e1e1; }
+			#msg { position: absolute; top: 0; right: 0; font: bold 25px "Arial", Helvetica, sans-serif; padding: 10px 15px 10px 20px; background-color: #fff; box-shadow: 0 0 20px #757575; border-radius: 0 0 0 9px; }
+
+		</style>
+	</head>
+	<body>
+		<div id="msg">Msg</div>
+		<div id="port"></div>
+	</body>
+</html>

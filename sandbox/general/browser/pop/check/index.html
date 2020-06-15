@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <title>Check 4 PopUp</title>
+
+        <script type="text/javascript" language="javascript">
+
+            var newwindow =  window.open("","popupcheck","width=100,height=100,directories=no,menubar=no,toolbar=no");
+            if(newwindow)
+            {
+                newwindow.close();
+            }
+            else
+            {
+                window.alert("Pop-up Blocker has been detected!");
+            }
+
+        </script>
+    </head>
+    <body></body>
+</html>

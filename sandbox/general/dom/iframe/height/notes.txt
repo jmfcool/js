@@ -1,0 +1,47 @@
+#####################################
+# Installation Directions
+#####################################
+
+Parent Frame:
+
+- Add Script to Parent Frame <head>.
+
+	<script type="text/javascript">
+		
+		function resizeFrame(y) { document.getElementById('iframe').style.height = y + "px"; }
+			
+	</script>
+
+
+- Add attributes frameborder="0" and id="iframe" to the iframe tag.
+
+	<iframe src="HREF HERE" id="iframe" frameborder="0""></iframe>
+
+
+
+
+Child Frame:
+
+- Add Script to Child Frame <head>.
+
+	<script type="text/javascript">
+		
+		window.onload = function(y) { top.resizeFrame(document.getElementById('content-wrapper').clientHeight) }
+			
+	</script>
+
+
+- Add wrapper to the content of the page. This should be placed directly below the <body> tag.
+
+	<body>
+		<div id="content-wrapper">CONTENT GOES HERE</div>
+	</body>
+
+
+- Add css selector with style to definitions "#content-wrapper { display: inline-block; }"
+		
+	<style type="text/css">
+			
+		#content-wrapper { display: inline-block; }
+			
+	</style>

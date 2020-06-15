@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Forms</title>
+        <style>
+
+            input, textarea, select { display: block; margin: 5px 0; }
+
+        </style>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+        <script crossorigin src="https://unpkg.com/@babel/standalone@7.1.0/babel.min.js"></script>
+        <script type="text/babel">
+
+            class Identity extends React.Component {
+
+                constructor() {
+                    super();
+                    this.state = {
+                        alpha: "",
+                        bravo: "",
+                        charlie: "",
+                        delta: ""
+                    };
+                    this.onFieldChange = this.onFieldChange.bind(this);
+                }
+
+                onFieldChange(event) {
+                    this.setState({
+                        [event.target.name]: event.target.value
+                    });
+                }
+
+                render() {
+                    return (<form>
+                                <input type="text" name="alpha" value={this.state.alpha} placeholder="Alpha" onChange={this.onFieldChange} />
+                                <input type="text" name="bravo" value={this.state.bravo} placeholder="Bravo" onChange={this.onFieldChange} />
+                                <textarea name="charlie" value={this.state.charlie} placeholder="Charlie" onChange={this.onFieldChange} />
+                                <select name="delta" value={this.state.delta} onChange={this.onFieldChange}>
+                                    <option value="">--</option>
+                                    <option value="foo">Foo</option>
+                                    <option value="bar">Bar</option>
+                                </select>
+                            </form>);
+                }
+            }
+
+
+            ReactDOM.render(<Identity />, document.getElementById('root'));
+
+        </script>
+    </body>
+</html>

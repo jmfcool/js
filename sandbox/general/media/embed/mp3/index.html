@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>Embed Mp3</title>
+		<style type="text/css">
+		
+			* { margin: 0 auto; padding: 0; border: 0; font: normal 100% "Arial", Helvetica, sans-serif; }
+			body { text-align: center; }
+			h1 { font-size: 25px; font-weight: bold; margin: 20px auto; }
+			h5 { font-size: 13px; margin: 15px auto; }
+			h5 span { font-size: 15px; font-weight: bold; color: #009900; }
+			h5 a { text-decoration: underline; font-weight: bold; color: #0147FA; }
+			strong { font-weight: bold; }
+			em { font-style: italic; }
+			table, td { border-collapse: collapse; }
+			#sb-wrapper { margin: 0; }
+		
+        </style>
+		<link href="css/global.css" type="text/css" rel="stylesheet" />
+	</head>
+	<body>
+		<script type="text/javascript" src="http://www.encore.org/js/swfobject.js"></script>
+        <script type="text/javascript">
+        
+            window.onload = function()
+            {
+                var flashvars = { mp3: "PP-Alex-2010.mp3", playerWidth: "275", startSeconds: "185", autoStart: "no" };
+                var params = { menu: "false" };
+                var attributes = { id: "player", name: "player" };
+                swfobject.embedSWF("playerAudio.swf", "player", "275", "35", "9.0.0", "expressInstall.swf", flashvars, params, attributes);
+            }		
+        
+        </script>
+        <h1>Embed Mp3</h1>
+		<div id="player"></div>
+        <h5><span>Note:</span> <strong>Click</strong> play button <strong>Above</strong> to play Mp3.</h5>
+	</body>
+</html>

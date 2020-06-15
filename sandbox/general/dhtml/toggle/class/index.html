@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>Toggle Class</title>
+        <script type="text/javascript">
+
+            function toggle(a,b)
+            {
+                var items = document.getElementsByTagName(b)
+                for (var i=0; i<items.length; i++)
+                {
+                    if (items[i].className && (items[i].className == 'user') && (items[i].id == a))
+                    {
+                        items[i].style.display = 'block'
+                    }
+                    else if (items[i].className && (items[i].className == 'user'))
+                    {
+                        items[i].style.display = 'none'
+                    }
+                }
+            }
+
+        </script>
+        <style type="text/css">
+
+            * { margin: 0 auto; padding: 0; border: 0; outline: 0; font: normal 100% "Arial", Helvetica, sans-serif; text-align: center; }
+            a { text-decoration: none; padding: 10px; }
+            div { padding-top: 20px; font-size: 20px; }
+
+        </style>
+    </head>
+    <body>
+        <div>
+            <a href="javascript://" onclick="toggle('one','div')">User 1</a>
+            <a href="javascript://" onclick="toggle('two','div')">User 2</a>
+            <a href="javascript://" onclick="toggle('three','div')">User 3</a>
+            <a href="javascript://" onclick="toggle('four','div')">User 4</a>
+        </div>
+        <div class="user" id="one">User 1</div>
+        <div class="user" id="two">User 2</div>
+        <div class="user" id="three">User 3</div>
+        <div class="user" id="four">User 4</div>
+    </body>
+</html>

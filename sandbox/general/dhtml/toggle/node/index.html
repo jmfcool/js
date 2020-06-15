@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/html">
+    <head>
+        <title>Toggle Node</title>
+        <script type="text/javascript">
+
+            var root = this;
+
+            console.log(root);
+
+            function checkbox(id,item)
+            {
+                var get;
+                    get = (item.checked) ? 'block' : 'none';
+                this.set = get;
+                document.getElementById(id).style.display = this.set;
+            }
+
+            function link(id)
+            {
+                this.id = id;
+                var get, set;
+                    get = document.getElementById(this.id).style.display
+                    set = (get == 'block') ? 'none' : 'block';
+                document.getElementById(this.id).style.display = set;
+            }
+
+        </script>
+    </head>
+    <body>
+        <h1>Toggle Node</h1>
+        <div id="toggle" style="display:none">
+            <h2>Hello World</h2>
+        </div>
+        <form>
+            <p><input type="checkbox" onclick="checkbox('toggle',this)">Toggle Node</p>
+            <p>Anchor: <a href="javascript://" onClick="link('toggle')">Toggle Node</a></p>
+        </form>
+    </body>
+</html>

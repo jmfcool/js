@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Events</title>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+        <script crossorigin src="https://unpkg.com/@babel/standalone@7.1.0/babel.min.js"></script>
+        <script type="text/babel">
+
+            const Events = (props) => {
+                const clickHandler = console.log;
+                return (<button onClick={clickHandler}>Make an Event!</button>);
+            }
+
+            ReactDOM.render(<Events />, document.getElementById('root'));
+
+        </script>
+    </body>
+</html>

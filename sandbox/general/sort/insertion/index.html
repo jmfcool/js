@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sort - Insertion</title>
+        <script type="text/javascript">
+
+            var foo = {
+                sort : function (arr, callback) 
+                {
+                    console.log(arr);
+
+                    var tmp, l = arr.length, i = -1, j;
+
+                    while (l--) 
+                    {
+                        tmp = arr[++i], j = i;
+                        while(j-- && arr[j] > tmp) arr[j+1] = arr[j];
+                        arr[j+1] = tmp;
+                    }
+                    return callback(arr);
+                },
+                init : function () 
+                {
+                    // Exmaple of sorting Integers
+                    foo.sort([3, 5, 9, 2, 7, 6, 1], function (sorted) 
+                    {
+                        console.log(sorted);
+                    });
+                    // Example of sorting Strings
+                    foo.sort(['Mustang','Chevy','Toyota','Honda'], function (sorted) 
+                    {
+                        console.log(sorted);
+                    });
+                }
+            };
+
+            document.addEventListener('DOMContentLoaded',foo.init,true);
+
+        </script>
+    </head>
+    <body></body>
+</html>

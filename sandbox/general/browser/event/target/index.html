@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<title>Event Targeting</title>
+		<script type="text/javascript">
+
+			function target(e)
+			{
+				var t,d,e;
+				d = document.getElementById('viewport:mouseover');
+				if (!e) e = window.event;
+				if (e.target)
+				{
+					t = e.target;
+				}
+				else if (e.srcElement)
+				{
+					t = e.srcElement;
+				}
+				if (typeof t.title === 'string') d.innerHTML = t.title;
+			}
+
+			(navigator.appName === 'Microsoft Internet Explorer') ? document.attachEvent('onmouseover',target) : document.addEventListener('mouseover',target,false);
+
+		</script>
+		<style type="text/css">
+		
+			* { margin: 0 auto; padding: 0; }		
+			ul { margin: 10px 0; list-style: none; }
+	
+			.body { text-align: center; margin-top: 20px; }
+			.body-1 {}
+			.body-wrap { width: 300px; border: 2px solid #a1a1a1; padding: 30px; }
+			.viewport-message { height: 25px; }
+		
+		</style>
+	</head>
+	<body>
+		<div class="body body-1">
+			<div id="viewport:mouseover" class="viewport-message">Rollover an item below to trigger an Event</div>
+			<div class="body-wrap">
+				<img src="https://en.gravatar.com/userimage/5672159/6e90b9535181a7c8d685c57369243635.jpeg" title="This is an image" />
+				<ul>
+					<li title="This is list item 1">List Item 1</li>
+					<li title="This is list item 2">List Item 2</li>
+					<li title="This is list item 3">List Item 3</li>
+				</ul>
+				<p title="This is a paragraph">Paragraph</p>
+			</div>
+		</div>
+	</body>
+</html>

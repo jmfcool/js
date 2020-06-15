@@ -1,0 +1,35 @@
+<html>
+	<head>
+		<title>Array.forEach()</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<script type="text/ecmascript">
+
+			const example = {
+				scope: null
+			};
+
+			let str = "";
+
+			example.message = (value) => {
+				console.log(value);
+				str = str + value + "<br>";
+				document.getElementById('viewport').innerHTML = str;
+			};
+
+			example.foo = () => {
+				const bar = ["alpha","bravo","charlie","delta","echo"];
+				bar.forEach(example.message);
+			};
+
+			example.init = () => {
+				example.foo();
+			};
+
+			document.addEventListener('DOMContentLoaded',example.init,false);
+
+		</script>
+	</head>
+	<body>
+		<div id="viewport"></div>
+	</body>
+</html>

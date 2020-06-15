@@ -1,0 +1,58 @@
+<html>
+    <head>
+    <title>Calculate BMI</title>
+    <style type="text/css">
+
+        * { margin: 0 auto; padding: 0; text-align: center; font: normal 100% "Arial", Helvetica, sans-serif; }
+        #body-wrapper { width: 100%; position: absolute; top: 30%; left: 0px; }
+        h2 { font-size: 22px; color: #ce0000; margin-bottom: 10px; }
+        form { border: 1px solid #f1f1f1; width: 250px; padding: 15px 0; }
+        #form-wrapper { margin: 0; }
+        ol { margin: 0px 0px 10px 40px; }
+        li { font-size: 14px; text-align: left; margin-top: 5px; }
+        label { display: block; text-align: left; }
+        input { text-align: left; margin: 2px 0; }
+        span { font-size: 12px; font-style: italic; color: #a1a1a1; }
+
+    </style>
+    <script type="text/javascript">
+
+        self.validateForm = function()
+        {
+            var doc = document.getElementById("form");
+            if((doc.feet.value == "") || (doc.inches.value == "") || (doc.pounds.value == ""))
+            {
+                alert("Please Fill out Form");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+    </script>
+    </head>
+    <body>
+        <div id="body-wrapper">
+        <h2>What is your BMI..?</h2>
+            <form method="get" action="getBMI.html" id="form" onSubmit="return validateForm()">
+                <div form-wrapper>
+                    <ol>
+                        <li>
+                            <label>Height</label>
+                            <input type="text" name="feet" /> <span>feet</span>
+                            <br />
+                            <input type="text" name="inches" /> <span>inches</span>
+                        </li>
+                        <li>
+                            <label>Weight</label>
+                            <input type="text" name="pounds" /> <span>pounds</span>
+                        </li>
+                    </ol>
+                    <input type="submit" value="Submit" style="text-align: center;" />
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

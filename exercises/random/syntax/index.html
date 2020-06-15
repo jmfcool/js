@@ -1,0 +1,68 @@
+<html>
+	<head>
+		<title>Syntax Highlighting</title>
+		<style type="text/css">
+
+			.function { font-style: italic; color: blue; }
+			.condition { color: green; }
+			.parenthesis { color: purple; }
+			.handlebar { color: red; }
+			.handlebarMathcing { color: orange; }
+			.parenthesisMatching { color: yellow; }
+
+		</style>
+	</head>
+	<body>
+		<div id="viewport"></div>
+	</body>
+	<script>
+
+		let str = 'function ( ) { if () {} else {} }';
+		let arr = str.split(" ");
+
+		for (let key in arr) 
+		{
+			if (/function/.test(arr[key])) {
+				arr.splice(key,1,'<span class="function">function</span>');
+			}
+
+			if (/if/.test(arr[key])) {
+				arr.splice(key,1,'<span class="condition">if</span>');
+			}
+
+			if (/else/.test(arr[key])) {
+				arr.splice(key,1,'<span class="condition">else</span>');
+			}
+
+			if (/^\{$/.test(arr[key])) {
+				arr.splice(key,1,'<span class="handlebar">{</span>');
+			}
+
+			if (/^\}$/.test(arr[key])) {
+				arr.splice(key,1,'<span class="handlebar">}</span>');
+			}
+
+			if (/^\($/.test(arr[key])) {
+				arr.splice(key,1,'<span class="parenthesis">(</span>');
+			}
+
+			if (/^\)$/.test(arr[key])) {
+				arr.splice(key,1,'<span class="parenthesis">)</span>');
+			}
+
+			if (/^\(\)$/.test(arr[key])) {
+				arr.splice(key,1,'<span class="parenthesisMatching">()</span>');
+			}
+
+			if (/^\{\}$/.test(arr[key])) {
+				arr.splice(key,1,'<span class="handlebarMathcing">{}</span>');
+			}
+
+		}
+
+		res = arr.join(" ");
+
+		document.getElementById('viewport').innerHTML = res;
+		
+	</script>
+</html>

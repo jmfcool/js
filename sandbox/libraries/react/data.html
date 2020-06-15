@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+        <script crossorigin src="https://unpkg.com/@babel/standalone@7.1.0/babel.min.js"></script>
+        <script type="text/babel">
+
+        const Card = (props) => {
+            return (
+            <div style={{margin:'1em'}}>
+              <img width="75" src={props.avatar} />
+              <div style={{display:'inline-block', marginLeft: 10}}>
+                <div style={{fontWeight:'bold'}}>{props.name}</div>
+                <div>{props.company}</div>
+              </div>
+            </div>
+          );
+        };
+
+        let data = [
+            {
+            name: "Jeremiah Faria",
+            avatar: "https://avatars0.githubusercontent.com/u/1302205?v=4",
+            company: "jmfcool"
+          },
+            {
+            name: "Jeremiah Baxter",
+            avatar: "https://avatars0.githubusercontent.com/u/1302205?v=4",
+            company: "Runthroughmedia"
+          },
+        ]
+
+        const CardList = (props) => {
+            return (
+            <div>
+              {props.cards.map(card => <Card {...card} />)}
+            </div>
+          );
+        }
+
+        ReactDOM.render(<CardList cards={data} />, document.getElementById('root'));
+
+        </script>
+    </body>
+</html>

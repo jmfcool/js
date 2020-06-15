@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<title>logarithm</title>
+		<script type="text/javascript">
+
+			var d;
+			d = document.getElementById('viewport:logarithm');
+			function logN(x,b) 
+			{
+				if (b == 2)
+                {
+					return Math.LOG2E * Math.log(x);
+				}
+                if (b == 10)
+				{
+			    	return Math.LOG10E * Math.log(x);
+			    }
+		    	return Math.log(x) / Math.log(b);
+			}
+
+		</script>
+	</head>
+	<body>
+		<div id="viewport:logarithm"></div>
+	</body>
+</html>

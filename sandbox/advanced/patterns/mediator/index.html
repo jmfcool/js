@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <title>Mediator Example</title>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script type="text/javascript" src="mediator.js"></script>
+        <script type="text/javascript">
+
+            function display(data)
+            {
+                var date = new Date(),
+                    msg = data.from + " said \"" + data.message + "\" to " + data.to;
+
+                $('#result').prepend('<p>' + msg + '(' + date.toLocaleTimeString() + ')</p>');
+            }
+
+            function log(data)
+            {
+                console.log(data);
+            }
+
+            mediator.subscribe("action", display);
+            mediator.subscribe("action", log);
+
+
+            mediator.handleSubmit = function(event)
+            {
+                event.preventDefault();
+
+                var from, to, message;
+                    from = document.getElementById('from').value;
+                    to = document.getElementById('to').value;
+                    message = document.getElementById('message').value;
+
+                mediator.publish('action', { message: message, from: from, to: to });
+            };
+
+            mediator.init = function()
+            {
+                document.addEventListener('submit', mediator.handleSubmit, true);
+            };
+
+            document.addEventListener('DOMContentLoaded', mediator.init, true);
+
+        </script>
+        <style type="text/css">
+
+            * { margin: 0; padding: 0; }
+            h1 { margin: 15px 0 0 15px; }
+            form { margin: 15px; }
+            input { display: block; }
+            button { margin-top: 15px; padding: 5px 10px; }
+
+            #result { position: absolute; top: 0; right: 0; border-left: 3px solid #e1e1e1; border-bottom: 3px solid #e1e1e1; padding: 10px; }
+
+        </style>
+    </head>
+    <body>
+        <h1>Chat</h1>
+        <form>
+            <label for="from">Your Name:</label>
+            <input id="from" type="text"/>
+            <br />
+            <label for="to">Send to:</label>
+            <input id="to" type="text"/>
+            <br />
+            <label for="message">Message:</label>
+            <input id="message" type="text"/>
+            <button type="submit">Chat</button>
+        </form>
+        <div id="result"></div>
+    </body>
+</html>

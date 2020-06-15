@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <script type="text/javascript">
+
+            String.prototype.width = function(id)
+            {
+                var obj = $(id);
+                    obj.innerHTML = this;
+                return obj.offsetWidth;
+            }
+            String.prototype.height = function(id)
+            {
+                var obj = $(id);
+                    obj.innerHTML = this;
+                return obj.offsetHeight;
+            }
+            String.prototype.lines = function(l,c)
+            {
+                return Math.round(c/l);
+            }
+
+            function $(id) { return document.getElementById(id); }
+
+            window.onload = function()
+            {
+            var s, w, h, l;
+                s = "example example example example example example example example example example example example example example";
+                w = s.width('ruler');
+                h = s.height('ruler');
+                l = s.lines('20',h);
+            top.resizeFrame(w*l,h/l);
+            console.log(s);
+            console.log(w);
+            console.log(h);
+            console.log(l);
+            console.log(w * l);
+            }
+
+        </script>
+        <style type="text/css">
+
+            * { margin: 0; padding: 0; }
+
+        </style>
+    </head>
+    <body>
+        <a id="ruler"></a>
+    </body>
+</html>

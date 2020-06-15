@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<title>Abstraction Pattern</title>
+		<script type="text/javascript">
+
+			var foo = function() {
+			  
+			  console.log("alpha");
+
+			};
+
+			var bar = function(f) {
+			  
+			  console.log("bravo");
+			  
+			  try {
+			    f();
+			  }
+			  catch(ex) {
+			    console.log(ex);
+			  }
+			  
+			  console.log("charlie");
+
+			  
+			};
+
+			bar(foo);
+
+		</script>
+	</head>
+	<body></body>
+</html>

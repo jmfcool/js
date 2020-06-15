@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>Even Bubble/Capture</title>
+		<script type="text/javascript">
+			
+			self.startCapture = function(box) { console.log(box); }
+			document.addEventListener('click',startCapture,false);
+			
+			self.startBubble = function(box) { console.log(box); }
+			document.addEventListener('click',startBubble,true);
+			
+			self.stopBubble = function(box) { console.log(box); }
+			document.removeEventListener('click',startCapture,false);
+	
+			self.toggleStyle = function(id) { var doc = document.getElementById(id); (doc.style.display == "none") ? doc.style.display = 'block' : doc.style.display = 'none'; }
+		
+		</script>
+		<style type="text/css">
+		
+			* { margin: 0px auto; padding: 0px; }
+			body { text-align: center; }
+			.body { display: block; text-align: center; border: none; }
+			div { width: 80%; border: 2px solid #a1a1a1; text-align: center; margin: 0px auto; padding: 20px; display: block; }
+			span { cursor: pointer; }
+			ul { margin: 0px; padding: 50px 0px; }
+			li { list-style-type: none; display: inline; margin: 20px; padding: 10px; border: 1px solid #e1e1e1; cursor: pointer; }
+			
+		</style>
+	</head>
+	<body>
+		<div class="body">
+			<ul>
+				<li onclick="toggleStyle('one')">Bubble</li>
+				<li onclick="toggleStyle('two')">Capture</li>
+			</ul>
+			<div id="one">
+				<p>Bubble</p>
+				<span id="bubble" onclick="startBubble('bubble')"><a href="javascript://" onclick="startBubble('bubble'); return false;">Start</a></span>
+				<a href="javascript://" onclick="stopBubble('bubble'); return false;">Stop</a>
+			</div>
+			<br />
+			<div id="two">
+				<p>Capture</p>
+				<span id="capture" onclick="startCapture('capture')"><a href="javascript://" onclick="startCapture('capture'); return false;">Start</a></span>
+				<a href="javascript://" onclick="stopBubble('capture'); return false;">Stop</a>
+			</div>
+			<ul>
+				<li><a href="http://www.quirksmode.org/js/introevents.html" target="_blank">Introduction to Events</a></li>
+				<li><a href="http://www.quirksmode.org/js/events_order.html" target="_blank">Events Order</a></li>
+				<li><a href="http://www.quirksmode.org/js/events_tradmod.html" target="_blank">Events Traditional Model</a></li>
+				<li><a href="http://www.quirksmode.org/js/events_advanced.html" target="_blank">Events Advanced</a></li>
+			</ul>
+		</div>
+	</body>
+</html>

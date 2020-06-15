@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<title>Count</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<script type="text/ecmascript">
+
+			const example = {
+				scope: null
+			};
+
+			example.message = (args) => {
+				if(args.log) console.log(args.log);
+				if(args.msg) document.getElementById('viewport').innerHTML = `<h1>${args.msg}</h1>`;
+			};
+
+			example.process = () => {
+				let i = 1;
+				let j = 1;
+				while (i<101) {
+					while (j<101) {
+						(j%3) ? example.message({ msg:j, log:j }) : example.message({ msg:'foo', log:'foo' });
+						j++;
+					}
+					i++;
+				}
+			};
+
+			example.init = () => {
+				example.process();
+			};
+
+			document.addEventListener('DOMContentLoaded',example.init,false);
+
+		</script>
+	</head>
+	<body>
+		<div id="viewport"></div>
+	</body>
+</html>

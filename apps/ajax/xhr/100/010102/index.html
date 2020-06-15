@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>XHR</title>
+		<script type="text/javascript">
+
+			var xhr;
+			var result;
+			var interval;
+
+			function __set(url)
+			{
+				xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+				xhr.open("GET",url,true);
+				xhr.send();
+				xhr.onreadystatechange = function()
+				{
+					if (xhr.readyState == 4 && xhr.status == 200)
+					{
+						result = xhr.responseText;
+					}
+					else
+					{
+						result = xhr.status;
+					}
+				}
+			}
+			function __get()
+			{
+				if(result != null)
+				{
+					interval = clearInterval(interval);
+					console.log(result);
+				}
+			}
+			function __init()
+			{
+				interval = setInterval("__get()", 500);			
+			}
+			
+
+		</script>
+		<script type="text/javascript">
+		
+			document.onclick = function()
+			{
+				__init();
+			}
+		
+		</script>
+		<style type="text/css">
+		
+			* { margin: 0 auto; padding: 0; font: normal 100% "Arial", Helvetica, sans-serif; }
+			body { text-align: center; }
+			div { position: absolute; top: 40%; left: 0; width: 100%; }
+			a { font-size: 20px; text-decoration: none; text-align: center; }
+			
+		</style>
+	</head>
+	<body>
+		<div>
+			<a href="javascript://" onclick="__set('xhr.txt'); return false;">Send Request</a>
+		</div>
+	</body>
+</html>

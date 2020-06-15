@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>Detect Flash</title>
+		<script type="text/javascript" src="swfobject.js"></script>
+		<script type="text/javascript">
+
+			var version = swfobject.getFlashPlayerVersion();
+			var output = "Flash Player [" + version.major + "." + version.minor + "." + version.release + "] Installed";
+			alert(output);
+		
+			function flashDetect(id)
+			{
+				var obj = document.getElementById(id);
+				var version = swfobject.getFlashPlayerVersion();
+				var output = version.major + version.minor + version.release;		
+				if(output != 0)
+				{
+					obj.innerHTML = "Flash Present";
+				}
+				else
+				{
+					obj.innerHTML = "No Flash Present";
+				}
+			}
+			window.onload = function() { flashDetect('mediaCenter'); }
+			
+		</script>
+		<style type="text/css">
+		
+			#mediaCenter { font: bold 30px Arial; }
+		
+		</style>
+	</head>
+	<body>
+		<div id="mediaCenter"></div>
+	</body>
+</html>

@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <script type = "text/javascript">
+
+            var timeInSecs, ticker;
+
+            function getSeconds()
+            {
+                var now, time, midnight, ft, diff;
+                    now = new Date();
+                    time = now.getTime();
+                    midnight = new Date(now.getFullYear(),now.getMonth(),now.getDate(),0,0,0);
+                    ft = midnight.getTime() + 86400000;
+                    diff = ft - time;
+                    diff = parseInt(diff/1000);
+                if (diff > 86400)
+                {
+                    diff = diff - 86400;
+                }
+                startTimer(diff);
+            }
+
+            function startTimer(secs)
+            {
+                timeInSecs = parseInt(secs);
+                ticker = setInterval("tick()",1000);
+                tick();
+            }
+
+            function tick()
+            {
+                var secs, hours, mins, result;
+                    secs = timeInSecs;
+                (secs > 0) ? timeInSecs-- : clearInterval(ticker);
+                hours= Math.floor(secs/3600);
+                secs %= 3600;
+                mins = Math.floor(secs/60);
+                secs %= 60;
+                result = ((hours < 10 ) ? '0' : '') + hours + ' hrs ' + ((mins < 10) ? '0' : '') + mins + ' mins ' + ((secs < 10) ? '0' : '') + secs + ' secs';
+                document.getElementById("countdown").innerHTML = result;
+                //console.log(result);
+            }
+
+            window.onload = getSeconds;
+
+        </script>
+        <style type="text/css">
+
+    			@import url('../../../css/sandbox/_sass/global.css');
+
+    		</style>
+    </head>
+    <body>
+        <span id="countdown" style="font-weight: bold;"></span>
+    </body>
+</html>

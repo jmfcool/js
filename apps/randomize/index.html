@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title>Flash Randomizer</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+    <script type="text/javascript">
+
+        self.flashRandomizer = function()
+        {
+            var rules, randomNumber, sum;
+                rules = [];
+                rules[0] = [20,'http://www.hulu.com/embed/Dv3pQGG92oRM4otdHcMV-g'];
+                rules[1] = [20,'http://www.hulu.com/embed/j7NtpFEKwTX7birk4jJL8A'];
+                rules[2] = [20,'http://www.hulu.com/embed/ovYI7ZF7gZYZDS7o7v4X7w'];
+                rules[3] = [20,'http://www.hulu.com/embed/OlZo4Fre6QDpvi0rsFwLgQ'];
+                rules[4] = [20,'http://www.hulu.com/embed/gtvz-AoXbxGs9Rb9b6MJ4g'];
+                randomNumber = Math.random();
+                sum = 0;
+            for(var i=0; i<rules.length; i++)
+            {
+                sum = sum + rules[i][0]/100;
+                if(randomNumber <= sum)
+                {
+                    return rules[i][1];
+                }
+            }
+        }
+
+        window.onload = function()
+        {
+            var fetchFlash;
+                fetchFlash = flashRandomizer();
+            swfobject.embedSWF(fetchFlash,"mediaCenter","512","296","9.0.0");
+        }
+
+    </script>
+    <style type="text/css">
+
+        * { margin: 0 auto; padding: 0; font: normal 100% arial; }
+        body { text-align: center; }
+        h1 { font-size: 25px; font-weight: bold; margin: 20px auto; }
+        h5 { font-size: 13px; margin: 15px auto; }
+        h5 span { font-size: 15px; font-weight: bold; color: #009900; }
+        h5 a { text-decoration: underline; font-weight: bold; color: #0147FA; }
+        strong { font-weight: bold; }
+        em { font-style: italic; }
+        #mediaCenter { font: bold 30px Arial; }
+
+    </style>
+    </head>
+    <body>
+        <h1>Flash Randomizer</h1>
+        <div id="mediaCenter"></div>
+        <h5><span>Note:</span> <strong>Four Videos</strong> are being set at <strong>Random</strong>. To <strong>Test</strong> this feature you will need to <strong><a href="./">Refresh</a></strong> the <strong>Browser</strong>.</h5>
+    </body>
+</html>

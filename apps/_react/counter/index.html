@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Reusable Component</title>
+		<style type="text/css">
+
+			@import url('../../../../css/_sandbox/_less/global.css');
+
+			#port
+			{
+				left: -20%;
+			}
+			#msg
+			{
+			    top: -82%;
+			    padding-right: 30px;
+			}
+
+		</style>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+        <script crossorigin src="https://unpkg.com/@babel/standalone@7.1.0/babel.min.js"></script>
+         <script type="text/babel">
+
+            class Button extends React.Component {
+              handleClick = () => {
+                this.props.onClickFunction(this.props.incrementValue);
+              };
+
+              render() {
+                return (
+                  <button onClick={this.handleClick}>
+                    +{this.props.incrementValue}
+                  </button>
+                );
+              }
+            }
+
+            const Result = (props) => {
+              return (
+                <div id='msg' style={{width:props.counter}}>{props.counter}</div>
+              );
+            };
+
+            class App extends React.Component {
+              state = { counter: 0 };
+
+              incrementCounter = (incrementValue) => {
+                this.setState((prevState) => ({
+                  counter: prevState.counter + incrementValue
+                }));
+              };
+
+              render() {
+                return (
+                  <div id="port">
+                    <Button incrementValue={1} onClickFunction={this.incrementCounter} />
+                    <Button incrementValue={5} onClickFunction={this.incrementCounter} />
+                    <Button incrementValue={10} onClickFunction={this.incrementCounter} />
+                    <Button incrementValue={100} onClickFunction={this.incrementCounter} />
+                    <Result counter={this.state.counter} />
+                  </div>
+                );
+              }
+            }
+
+            ReactDOM.render(<App />, document.getElementById('root'));
+
+        </script>
+    </body>
+</html>

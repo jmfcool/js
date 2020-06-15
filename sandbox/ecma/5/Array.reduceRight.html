@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<title>Array.reduceRight()</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<script type="text/ecmascript">
+
+			const example = {
+				scope: null
+			};
+
+			example.message = (args) => {
+				if(args.log) console.log(args.log);
+				if(args.msg) document.getElementById('viewport').innerHTML = args.msg;
+			};
+
+			example.process = () => {
+				const bar = [10,20,30,40,50];
+				return bar.reduceRight((accumulator, currentValue) => accumulator + currentValue);
+			};
+
+			example.init = () => {
+				example.scope = example.process();
+				example.message({ msg:example.scope, log:example.scope });
+			};
+
+			document.addEventListener('DOMContentLoaded',example.init,false);
+
+		</script>
+	</head>
+	<body>
+		<div id="viewport"></div>
+	</body>
+</html>
