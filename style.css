@@ -1,0 +1,81 @@
+* {
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  font: normal 100% "Arial", Helvetica, sans-serif;
+}
+
+body {
+  background-color: #e1e1e1;
+  text-align: center;
+}
+
+#msg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font: bold 25px "Arial", Helvetica, sans-serif;
+  padding: 10px 15px 10px 20px;
+  background-color: #fff;
+  box-shadow: 0 0 20px #757575;
+  border-radius: 0 0 0 9px;
+}
+
+span {
+  font: italic 12px "Arial", Helvetica, sans-serif;
+  letter-spacing: 1px;
+}
+
+#port {
+  position: absolute;
+  top: 45%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+#data {
+  float: right;
+  position: relative;
+  left: -50%;
+}
+
+button {
+  float: left;
+  position: relative;
+  left: 50%;
+  font: bold 12px "Arial", Helvetica, sans-serif;
+  padding: 10px 20px;
+  cursor: pointer;
+  color: #666;
+  border: 1px solid #898989;
+  background-color: #c3c3c3;
+  background: -webkit-gradient(linear, 0% 0%, 0% 10%, from(#afafaf), to(#c3c3c3));
+}
+
+button:first-of-type {
+  border-left: 1px solid #898989;
+  border-radius: 10px 0 0 10px;
+}
+
+button:last-of-type {
+  border-right: 1px solid #898989;
+  border-radius: 0 10px 10px 0;
+}
+
+button:first-of-type.active {
+  border-left: 1px solid #458920;
+}
+
+button:last-of-type.active {
+  border-right: 1px solid #458920;
+}
+
+.active {
+  color: #fff;
+  border: 1px solid #458920;
+  background-color: #33f;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#66f), to(#33f));
+}
+
+/*# sourceMappingURL=global.css.map */
