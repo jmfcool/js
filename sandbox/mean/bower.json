@@ -1,0 +1,9 @@
+{
+  "name": "nema",
+  "dependencies": {
+    "angular": "~1.4.7",
+    "angular-cookies": "~1.4.7",
+    "bootstrap": "~2.3.2",
+    "angular-mocks": "~1.4.7"
+  }
+}

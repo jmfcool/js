@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-app="nema">
+	<head>
+		<meta charset="utf-8">
+		<title>Node, Express, Mongo, Angular</title>
+		<script src="build/compiled.js" type="text/javascript"></script>
+		<link href="build/bundled.css" rel="stylesheet">
+	</head>
+	<body ng-controller="PrototypeController">
+		<ul class="menu">
+			<li ng-repeat="d in data | filter: { resolve: 'no' } | orderBy: 'input'"><a ng-click="object({id : d._id})">{{d.input}}</a></li>
+		</ul>
+		<form name="myform" id="myform1" ng-submit="submit()">
+			<fieldset>
+				<input type="text" name="input" ng-model="state.input" size=50 required />
+			</fieldset>
+			<fieldset>
+				<select name="select" ng-model="state.select" required>
+					<option value="option-1">Option 1</option>
+					<option value="option-2">Option 2</option>
+					<option value="option-3">Option 3</option>
+				</select>
+			</fieldset>
+			<fieldset>
+				<select name="multiple" ng-model="state.multiple" multiple required>
+					<option value="option-1">Option 1</option>
+					<option value="option-2">Option 2</option>
+					<option value="option-3">Option 3</option>
+				</select>
+			</fieldset>
+			<fieldset>
+				<input type="radio" name="radio" ng-model="state.radio" value="radio-1" required /> Radio 1
+				<input type="radio" name="radio" ng-model="state.radio" value="radio-2" required /> Radio 2
+				<input type="radio" name="radio" ng-model="state.radio" value="radio-3" required /> Radio 3
+			</fieldset>
+			<fieldset>
+				<input type="date" name="date" ng-model="state.date" required />
+			</fieldset>
+			<fieldset>
+				<input type="time" name="time" ng-model="state.time" required />
+			</fieldset>
+			<fieldset>
+				<input type="text" name="datetime" ng-model="state.datetime" required />
+			</fieldset>
+			<fieldset>
+				<input type="checkbox" name="checkbox" ng-model="state.checkbox" ng-true-value="true" ng-false-value="false" /> Checkbox
+			</fieldset>
+			<fieldset>
+				<button type="submit" ng-click="state.resolve = 'no'">Submit</button>
+				<a href="./" ng-click="remove()" class="new">Create New Entry</a>
+			</fieldset>
+			<fieldset>
+				<button type="submit" class="resolve" ng-click="state.resolve = 'yes'">Mark as Resolved</button>
+			</fieldset>
+		</form>
+	</body>
+</html>
