@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="incidentTool">
+        <head>
+                <meta charset="utf-8">
+                <title>Incident Tool</title>
+                <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+                <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular-messages.js"></script>
+                <script type="text/javascript" src="js/config.js"></script>
+                <script type="text/javascript" src="js/app.js"></script>
+                <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+                <style type="text/css">
+
+                        * { margin: 0 auto; padding: 0; font: normal 100% "Arial", Helvetica, sans-serif; }
+                        table, td { border-collapse: collapse; }
+                        img { border: 0; display: block; }
+                        form { margin: 10px; }
+                        fieldset { margin: 5px 0; }
+                        label { display: block; }
+                        button { padding: 5px 10px; }
+
+                </style>
+        </head>
+        <body ng-controller="IncidentController as incident">
+                <form name="incidentForm" ng-submit="submit()" novalidate>
+                        <div ng-repeat="element in incident.elements">
+                                <div ng-repeat="include in element.info.include" ng-if="form === include.type">
+                                        <ng-include src="'tpl/' + element.type + '.tpl'"></ng-include>
+                                </div>
+                        </div>
+			<div ng-if="form">
+				<button type="submit">Submit</button>
+			</div>
+                </form>
+        </body>
+</html>
